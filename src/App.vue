@@ -1,17 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <h1>Quotes app</h1>
+    <app-new-quote @quoteAdded="newQuote"></app-new-quote>
+    <quotes-grid v-bind:quotes="quotes"></quotes-grid>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NewQuote from './components/NewQuote.vue'
+import QuotesGrid from './components/QuotesGrid.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    appNewQuote: NewQuote,
+    QuotesGrid
+  },
+  methods: {
+    newQuote(quote) {
+      this.quotes.push(quote)
+    }
+  },
+  data() {
+    return {
+      quotes: [
+        'First quote',
+        'Second quote'
+        ]
+    }
   }
 }
 </script>
