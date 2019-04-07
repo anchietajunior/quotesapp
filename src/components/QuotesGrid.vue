@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group">
-    <li class="list-group-item" v-for="quote in quotes" :key="quote.id">{{ quote }}</li>
+    <li class="list-group-item" v-for="(quote, index) in quotes" :key="index" @click="deleteQuote(index)">{{ quote }}</li>
   </ul>
 </template>
 
@@ -8,7 +8,12 @@
 
 export default {
   name: 'QuotesGrid',
-  props: ['quotes']
+  props: ['quotes'],
+  methods: {
+    deleteQuote(index) {
+      this.$emit('quoteDeleted', index)
+    }
+  }
 }
 </script>
 
